@@ -31,6 +31,6 @@ angular
         controllerAs: 'dashboard'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/dashboard'
       });
   });

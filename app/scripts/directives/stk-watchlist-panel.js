@@ -9,7 +9,7 @@
 angular.module('stockDogApp')
 // [1] LETS SET UP DIRECTIVE WITH THIS NAME, ALSO LET IT KNOW WHAT SERVICES IT DEPENDS ON
 //SO ITS KINDA LIKE IMPORTING WATCHLISTSERVICE
-  .directive('stkWatchlistPanel', function ($location, $modal, WatchlistService) {
+  .directive('stkWatchlistPanel', function ($location, $modal, $routeParams, WatchlistService) {
     return {
       templateUrl: 'views/templates/watchlist-panel.html',
       restrict: 'E', //THIS MEANS ITS HANDLED ONLY AS A HTML ELEMENT
@@ -43,6 +43,12 @@ angular.module('stockDogApp')
         $scope.deleteList = function(list){
         	WatchlistService.remove(list);
         	$location.path('/');
+
+        //[7] FINDING CURRENT WATCHLIST + SENDING THE USER THERE
+        $scope.currentList = $routeParams.listId;
+        $scope.gotoList = function(listId){
+          $location.path('watchlist/' + listId);
+        };
         };
       }
     };
