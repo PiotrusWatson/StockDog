@@ -54,7 +54,7 @@ angular.module('stockDogApp')
     // [6] REMOVE A WATCHLIST + SAVE THE ALL ENCOMPASSING OBJECT
     this.remove = function(watchlist){
     	_.remove(Model.watchlists, function(list){ //_.remove is a magical bit of haskell that removes things fitting a criteria
-    		return list.id == watchlist.id;	
+    		return list.id === watchlist.id;	
     	});
     	saveModel();
     };
