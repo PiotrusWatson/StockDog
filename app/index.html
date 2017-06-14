@@ -1,3 +1,4 @@
+<!-- THE MAIN INDEX TEMPLATE MY DUDE -->
 <!doctype html>
 <html>
   <head>
@@ -15,59 +16,57 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="stockDogApp">
-    <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" href="#/">stockDog</a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
-          </div>
+  <!-- [1] LOAD THE MAIN CONTROLLER MAINCTRL -->
+  <body ng-app="stockDogApp" ng-app="MainCtrl">
+    <!-- WOAH IS THAT NAVBAR CODE -->
+    <nav class="navbar navbar-inverse" role="navigation" ng-cloak>
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+            data-toggle="collapse" data-target="#main-nav">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Stock Dog</a>
         </div>
-      </div>
-    </div>
 
-    <div class="container">
+        <!--get some links? for navbar?-->
+        <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="nav navbar-nav navbar-right">
+            <!-- [2] ADD THING CURRENTLY BEING VIEWED TO Correct ITEM-->
+            <li ng-class="{active: activeView === 'dashboard'}">
+              <a href="/">Dashboard</a>
+            </li>
+            <li ng-class="{active: activeView === 'watchlist'}"
+              class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+              Watchlists <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li ng-if="!watchlists.length" class="dropdown-header">
+                No lists found
+              </li>
+              <!-- [3] FOR EACH WATCHLIST FOUND, GIVE IT A SPECIAL LINK :) -->
+              <li ng-repeat="list in watchlists track by $index">
+                <a href="/#/watchlist/{{list.id}}">{{list.name}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div> <!-- /.navbar-collapse -->
+    </div> <!-- /.container.fluid -->
+  </nav>
+
+  <!-- MAIN CONTAINER. VERY NOT NAVBAR -->
+  <div class="container-fluid" id="main">
     <div ng-view=""></div>
-    </div>
+
     <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+      <p>Built with <span class="glyphicon glyphicon-heart"></span></p>
     </div>
+  </div>
 
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -92,6 +91,7 @@
         <script src="scripts/directives/stk-watchlist-panel.js"></script>
         <script src="scripts/controllers/watchlist.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
+        <script src="scripts/controllers/main.js"></script>
         <!-- endbuild -->
 </body>
 </html>
