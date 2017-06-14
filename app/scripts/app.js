@@ -20,6 +20,16 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
+      .when('/watchlist/:listId', {
+        templateUrl: 'views/watchlist.html',
+        controller: 'WatchlistCtrl',
+        controllerAs: 'watchlist'
+      })
+      .when('/dashboard', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl',
+        controllerAs: 'dashboard'
+      })
       .otherwise({
         redirectTo: '/'
       });
