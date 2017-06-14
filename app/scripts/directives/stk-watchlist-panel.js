@@ -44,11 +44,11 @@ angular.module('stockDogApp')
         	WatchlistService.remove(list);
         	$location.path('/');
         };
-        
+
         //[7] FINDING CURRENT WATCHLIST + SENDING THE USER THERE
         $scope.currentList = $routeParams.listId;
         $scope.gotoList = function(listId){
-          $location.path('watchlist/' + listId);
+          $location.path('/watchlist/' + listId);
         };
       }
     };
