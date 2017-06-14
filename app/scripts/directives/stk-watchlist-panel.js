@@ -19,7 +19,7 @@ angular.module('stockDogApp')
         $scope.watchlist = {};
         var addListModal = $modal({ //makes a new modal window object thats like inside the other window
         	scope: $scope,
-        	template: 'views/templates/addlist-modal.html',
+        	templateUrl: 'views/templates/addlist-modal.html',
         	show: false
         });
 
