@@ -11,15 +11,14 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="stock-symbol">Symbol</label>
-						<!-- [1] buffered input into label property for each company in newStock -->
-						<input type="text"
+						<!-- [1] input into label property for each company in newStock -->
+						<select type="text"
 							class="form-control"
 							id="stock-symbol"
 							placeholder="Stock Symbol"
 							ng-model="newStock.company"
 							ng-options="company as company.label for company in companies"
-							bs-typeahead
-							required>
+							required></select>
 					</div>
 					<!--[2] Only get numbers for share inputs into a newStock -->
 					<div class="form-group">

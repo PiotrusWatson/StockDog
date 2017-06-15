@@ -9,6 +9,6 @@
  */
 angular.module('stockDogApp')
   .service('CompanyService', function CompanyService($resource) {
-  	//returns some companies :)
+  	//uses resource service to get a companies.json file from file system, turns into obj
     return $resource('companies.json');
   });

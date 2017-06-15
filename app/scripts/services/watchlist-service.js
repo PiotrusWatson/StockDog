@@ -28,7 +28,7 @@ angular.module('stockDogApp')
   			if (existingStock){
   				existingStock.shares += stock.shares;
   			} else {
-  				//altwernatively, finds some more stocks, does shit
+  				//altwernatively, adds stockModel to stock, slaps it into stocks
   				_.extend(stock, StockModel);
   				this.stocks.push(stock);
   			}
@@ -72,9 +72,10 @@ angular.module('stockDogApp')
     		nextId: localStorage['StockDog.nextId'] ?
     			parseInt(localStorage['StockDog.nextId']) : 0
     	};
-    	//??????
+    	//foreach watchlist, apply watchlistmodel to watchlists?
     	_.each(model.watchlists, function(watchlist) {
     		_.extend(watchlist, WatchListModel);
+    		//inturn, foreach stock, apply stockmodel to stock
     		_.each(watchlist.stocks, function(stock){
     			_.extend(stock, StockModel);
     		});
