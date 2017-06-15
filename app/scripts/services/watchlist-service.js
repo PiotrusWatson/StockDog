@@ -104,7 +104,7 @@ angular.module('stockDogApp')
     	}
     };
 
-    // [5] ADD + SAVE A NEW WATCHLIST TO THE ALL ENCOMPASSING OBJECT
+    // [5] ADD + SAVE A NEW WATCHLIST TO THE ALL ENCOMPASSING OBJECT - ALWAYS DONE BEFORE STOCKS
     this.save = function(watchlist){
     	watchlist.id = Model.nextId++;
     	watchlist.stocks = [];
