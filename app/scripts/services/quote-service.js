@@ -8,7 +8,7 @@
  * Service in the stockDogApp.
  */
 angular.module('stockDogApp')
-  .service('QuoteService', function ($http, $interval) {
+  .service('QuoteService', function ($http, $interval, $sce) {
     // VAR INITIALIZATION
     var stocks = [];
     var BASE = 'http://query.yahooapis.com/v1/public/yql';
@@ -29,7 +29,7 @@ angular.module('stockDogApp')
     	}
     };
 
-    // [2] HELP FUNCTIONS THAT ADD TO, REMOVE FROM AND CLEAR THE STOCK LIST
+    // [2] HELP FUNCTIONS THAT ADD TO, REMOVE FROM AND CLEAR THE STOCK LIST ALSO TRUSTING :)
     this.register = function(stock){
     	stocks.push(stock);
     };
@@ -39,30 +39,33 @@ angular.module('stockDogApp')
     this.clear = function(){
     	stocks = [];
     };
+    var trustSrc = function(src){
+    	return $sce.trustAsResourceUrl(src);
+    };
 
     //[3] LETS TALK TO YAHOO FINANCE TO GET SOME NICE QUOTES :)
 
     this.fetch = function() {
-    	//????
+    	//gets all listed symbols from each
     	var symbols = _.reduce(stocks, function(symbols, stock){
     		symbols.push(stock.company.symbol);
     		return symbols;
     	}, []);
     //turn some SQL into the correct URI text to query quotes
     var query = encodeURIComponent('select * from yahoo.finance.quotes ' + 
-    	'where symbol in (\'' + symbols.join(',') +'\')'); //where symbol in ('listasymbols')
+    	'where symbol in (\'' + symbols.join(',') +'\')'); //where symbol in ('list,a,symbols')
     //slap this query into the full url
     var url = BASE + '?' + 'q=' + query + '&format=json&diagnostics=true' +
-    	'&env=http://datatables.org/alltables.env';
-    $http.jsonp(url + '&callback=JSON_CALLBACK') //lesgo get some JSON
-    	.success(function (data) { //if we succeed
-    		if (data.query.count) {
-    			var quotes = data.query.count > 1 ?
-    				data.query.results.quote : [data.query.result.quote];
+    	'&env=store://datatables.org/alltableswithkeys';
+    $http.jsonp(trustSrc(url), {jsonpCallbackParam: 'callback'}) //lesgo get some JSON
+    	.then(function (data) { //if we succeed
+    		if (data.data.query.count) {
+    			var quotes = data.data.query.count > 1 ?
+    				data.data.query.results.quote : [data.data.query.results.quote];
     			update(quotes);
     		}
-    	})
-    	.error(function(data) {//if we dont succeed
+    	},
+    	function(data) {//if we dont succeed
     		console.log(data); 
     	}); 
     };
