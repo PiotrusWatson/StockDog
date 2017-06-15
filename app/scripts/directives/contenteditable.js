@@ -37,7 +37,7 @@ angular.module('stockDogApp')
         	});
         }
 
-        // [5] CHECK FOR CHANGE EVENTS TO ENABLE THIS
+        // [5] CHECK FOR 3 CHANGE EVENTS TO ENABLE THIS ON ANY OF THEM
         $element.on('blur keyup change', function(){
         	$scope.$apply(read);
         });

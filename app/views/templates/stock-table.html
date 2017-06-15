@@ -38,7 +38,7 @@
 			stock="stock"
 			is-last="$last">
 			<td>{{stock.company.symbol}}</td>
-			<td>{{stock.shares}}</td>
+			<td contenteditable type="number" ng-model="stock.shares"></td>
 			<td>{{stock.lastPrice}}</td>
 			<td>
 			<!-- either show percentchange or just general change depending on whether showPercent is true/false -->
@@ -53,3 +53,4 @@
 		</tr>	
 	</tbody>
 </table>
+<div class="small text-center">Click on Shares cell to edit.</div>
