@@ -32,7 +32,7 @@
 		</tr>
 	</tfoot>
 	<tbody>
-		<!-- [3] For each stock, make a row -->
+		<!-- [3] For each stock, make a row. THIS IS TOTALLY COOL BTW YOU CAN JUST ITERATE DIRECTIVE CONTAINING STUFF -->
 		<tr stk-stock-row
 			ng-repeat="stock in watchlist.stocks track by $index"
 			stock="stock"
@@ -48,7 +48,7 @@
 			<td>{{stock.marketValue}}</td>
 			<td>{{stock.dayChange}}
 				<button type="button" class="close"
-				ng-click="removeStock(stock)">x</button>
+				ng-click="removeStock(stock)">&times;</button>
 			</td>
 		</tr>	
 	</tbody>

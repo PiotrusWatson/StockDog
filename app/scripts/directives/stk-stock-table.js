@@ -9,7 +9,7 @@
 angular.module('stockDogApp')
   .directive('stkStockTable', function () {
     return {
-      template: 'views/templates/stock-table.html',
+      templateUrl: 'views/templates/stock-table.html',
       restrict: 'E',
       // [1] RESTRICT IT TO ENTIRELY WATCHLIST SCOPE - HAVE TO TELL IT ABOUT WATCHLISTS ALL DAY
       scope: {
@@ -36,6 +36,8 @@ angular.module('stockDogApp')
       	};
 
       },
+
+      //[3] ITS A LINK FUNCTION - USE FOR EVERYTHING ELSE ALL OTHER LOGIC LOL
       link: function($scope) {
         $scope.showPercent = false;
         $scope.removeStock = function(stock){

@@ -26,8 +26,8 @@
 					<span class="glyphicon glyphicon-plus"></span> located above.
 				</p>
 			</div>
-			<!--[1] FOR EACH COMPANY, SHOW THEIR SYMBOL?? -->
-			<p ng-repeat="stock in stocks">{{stock.company.symbol}}</p>
+			<!--[1] FOR EACH COMPANY, SHOW ALL THEIR SHIT -->
+			<stk-stock-table ng-show="stocks.length" watchlist="wlist"></stk-stock-table>
 		</div>
 		</div>
 	</div>
