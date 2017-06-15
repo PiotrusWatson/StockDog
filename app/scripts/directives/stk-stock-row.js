@@ -16,7 +16,7 @@ angular.module('stockDogApp')
       	stock: '=',
       	isLast: '='
       },
-      //[2]
+      //[2] LOOK AT THAT LAST PARAM. IT'S A CONTROLLER. THIS IS HOW WE PASS OUR CONTROLLERS
       link: function ($scope, $element, $attrs, stockTableCtrl) {
         //[3] LETS GET A TOOLTIP FOR THIS stock-row
         $element.tooltip({
@@ -41,6 +41,7 @@ angular.module('stockDogApp')
         	$timeout(QuoteService.fetch);
         }
 
+        //[8] IF SHARES CHANGE, LET'S DO SOME RECALCULATION 
         $scope.$watch('stock.shares', function(){
         	$scope.stock.marketValue = $scope.stock.shares *
         		$scope.stock.lastPrice;

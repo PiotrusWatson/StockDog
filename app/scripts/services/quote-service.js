@@ -15,7 +15,6 @@ angular.module('stockDogApp')
 
     //[1] UPDATES STOCK MODEL WITH QUOTE DATA
     var update = function(quotes){
-    	console.log(quotes);
     	if(quotes.length === stocks.length){ //surely this should never validate true?
     		_.each(quotes, function(quote, idx){
     			var stock = stocks[idx];
