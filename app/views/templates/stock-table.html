@@ -12,7 +12,7 @@
 						<a ng-click="showPercent = !showPercent">%</a>
 					</span>|
 					<span ng-disabled = "showPercent === true">
-						<a ng-click="showPercent = !showPercent">%</a>
+						<a ng-click="showPercent = !showPercent">$</a>
 					</span>)
 				</span>
 			</td>
@@ -27,8 +27,8 @@
 			<td>{{watchlist.shares}}</td>
 			<td></td>
 			<td></td>
-			<td>{{watchlist.marketValue}}</td>
-			<td>{{watchlist.dayChange}}</td>
+			<td>{{watchlist.marketValue | currency}}</td>
+			<td stk-sign-color="{{watchlist.dayChange}}">{{watchlist.dayChange | currency}}</td>
 		</tr>
 	</tfoot>
 	<tbody>
@@ -39,14 +39,14 @@
 			is-last="$last">
 			<td>{{stock.company.symbol}}</td>
 			<td contenteditable type="number" ng-model="stock.shares"></td>
-			<td>{{stock.lastPrice}}</td>
+			<td>{{stock.lastPrice | currency}}</td>
 			<td>
 			<!-- either show percentchange or just general change depending on whether showPercent is true/false -->
-				<span ng-hide="showPercent">{{stock.change}}</span>
-				<span ng-show="showPercent">{{stock.percentChange}}</span>
+				<span stk-sign-color="{{stock.change}}" ng-hide="showPercent">{{stock.change}}</span>
+				<span stk-sign-color="{{stock.percentChange}}" ng-show="showPercent">{{stock.percentChange}}</span>
 			</td>
-			<td>{{stock.marketValue}}</td>
-			<td>{{stock.dayChange}}
+			<td>{{stock.marketValue | currency}}</td>
+			<td stk-sign-color="{{stock.dayChange}}">{{stock.dayChange | currency}}
 				<button type="button" class="close"
 				ng-click="removeStock(stock)">&times;</button>
 			</td>
