@@ -18,7 +18,9 @@ angular.module('stockDogApp')
 
         	var oldPrice = parseFloat(oldVal);
         	var newPrice = parseFloat(newVal);
-
+        	oldVal = newVal;
+        	console.log(oldVal);
+        	console.log(newVal);
         	// [2] FADE IN ADD THE CORRECT ANIM CLASS, AND THEN FADE OUT KILL IT 
 
         	if (oldPrice && newPrice){
