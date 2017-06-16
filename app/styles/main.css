@@ -14,7 +14,7 @@ span[disabled="disabled"] a{
   color: black;
 }
 span[disabled="disabled"]{
-  pointer-events: none
+  pointer-events: none;
 }
 
 /* Styles for ngAnimate animations */
