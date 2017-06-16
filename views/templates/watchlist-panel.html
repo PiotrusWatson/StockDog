@@ -1,0 +1,32 @@
+<!-- A PANEL WITH ALL CURRENT WATCHLISTS TO BE DUMPED INTO THE PAGE -->
+<div class = "panel panel-info">
+	<div class="panel-heading">
+		<span class="glyphicon glyphicon-eye-open"></span>
+		Watchlists
+		<!--[1] IF CLICKED, SHOW MODAL -->
+		<button type="button"
+			class="btn btn-success btn-xs pull-right"
+			ng-click="showModal()">
+			<span class="glyphicon glyphicon-plus"></span>
+		</button>
+	</div>
+	<div class="panel-body">
+		<!--[2] IF NO WATCHLISTS, SHOW SOME NICE REPLACEMENT HELP TEXT -->
+		<div ng-if="!watchlists.length" class="text-center">
+			Use <span class="glyphicon glyphicon-plus"></span> to create a list
+		</div>
+		<div class="list-group">
+			<!-- [3] LOOP OVER LIST, LINKING TO EACH ONE IN TURN -->
+			<a class="list-group-item"
+				ng-class="{ active: currentList == list.id }"
+				ng-repeat="list in watchlists track by $index"
+				ng-click="gotoList(list.id)">
+				{{list.name}}
+				<!-- [4] IF X IS CLICKED, CALL DELETELIST() -->
+				<button type="button" class="close"
+					ng-click="deleteList(list)"> &times;
+				</button>
+			</a>
+		</div>
+	</div>
+</div>
